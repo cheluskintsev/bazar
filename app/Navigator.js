@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Platform, StatusBar } from "react-native";
+import { View, Platform } from "react-native";
 import { Icon } from "react-native-elements";
 import {
   createBottomTabNavigator,
@@ -10,6 +10,7 @@ import SearchView from "./SearchView";
 import FavoritesView from "./FavoritesView";
 import ProfileView from "./ProfileView";
 import SettingsView from "./SettingsView";
+import HeaderRight from "./elements/HeaderRight";
 
 const BottomNavigator = createBottomTabNavigator(
   {
@@ -49,7 +50,10 @@ const BottomNavigator = createBottomTabNavigator(
 export const AppStack = createStackNavigator(
   {
     Main: {
-      screen: BottomNavigator
+      screen: BottomNavigator,
+      navigationOptions: props => ({
+        headerRight: <HeaderRight {...props} />
+      })
     },
     Settings: { screen: SettingsView }
   },
@@ -64,9 +68,7 @@ class Navigator extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        {/* <StatusBar /> */}
         <AppStack />
-        {/* <BottomTabNavigator /> */}
       </View>
     );
   }
